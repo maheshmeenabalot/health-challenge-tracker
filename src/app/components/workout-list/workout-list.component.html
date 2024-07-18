@@ -1,0 +1,40 @@
+<div class="workout-list">
+    <div class="mb-4">
+      <input
+        type="text"
+        placeholder="Search by user name"
+        [(ngModel)]="searchQuery"
+        (input)="searchWorkouts()"
+        class="w-full p-2 border border-gray-300 rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <select [(ngModel)]="filterType" (change)="filterWorkouts()" class="w-full p-2 border border-gray-300 rounded-md">
+        <option value="">All Workout Types</option>
+        <option value="Running">Running</option>
+        <option value="Swimming">Swimming</option>
+        <option value="Yoga">Yoga</option>
+        <!-- Add more workout types as needed -->
+      </select>
+    </div>
+    <ul>
+      <li
+        *ngFor="let workout of paginatedWorkouts"
+        class="p-2 border-b border-gray-300 cursor-pointer hover:bg-gray-100"
+        (click)="selectUser(workout.userName)"
+      >
+        {{ workout.userName }} - {{ workout.workoutType }} - {{ workout.workoutMinutes }} minutes
+      </li>
+    </ul>
+    <div class="mt-4">
+      <button
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        (click)="changePage(i + 1)"
+        [class.bg-blue-500]="currentPage === i + 1"
+        class="px-4 py-2 border border-gray-300"
+      >
+        {{ i + 1 }}
+      </button>
+    </div>
+  </div>
+  
