@@ -9,11 +9,15 @@
     />
   </div>
   <div class="mb-4">
+<<<<<<< HEAD
     <select
       [(ngModel)]="filterType"
       (change)="filterWorkouts()"
       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
+=======
+    <select [(ngModel)]="filterType" (change)="filterWorkouts()" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+>>>>>>> 163eebc4e713c8c194411611b60f87e02ac53a1f
       <option value="">All Workout Types</option>
       <option value="Running">Running</option>
       <option value="Swimming">Swimming</option>
@@ -28,8 +32,12 @@
       (click)="selectUser(workout.userName)"
     >
       <div>
+<<<<<<< HEAD
         <span class="font-semibold">{{ workout.userName }}</span> - 
         <span class="text-gray-600">{{ workout.workoutType }}</span>
+=======
+        <span class="font-semibold">{{ workout.userName }}</span> - <span class="text-gray-600">{{ workout.workoutType }}</span>
+>>>>>>> 163eebc4e713c8c194411611b60f87e02ac53a1f
       </div>
       <div class="text-gray-500">{{ workout.workoutMinutes }} minutes</div>
     </li>
