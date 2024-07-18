@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   workouts: Workout[] = [];
   workoutSummary: WorkoutSummary[] = [];
   isModalOpen = false;
-  selectedUser: string = ''; // Add selectedUser property
+  selectedUser: string = '';
 
   ngOnInit() {
     const initialData: Workout[] = [
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   }
 
   addWorkout(workout: Workout) {
-    this.workouts.push(workout);
+    this.workouts = [...this.workouts, workout]; // Create a new array reference
     localStorage.setItem('workouts', JSON.stringify(this.workouts));
     this.updateWorkoutSummary();
     this.hideModal();
@@ -72,6 +72,6 @@ export class AppComponent implements OnInit {
   }
 
   onUserSelected(userName: string) {
-    this.selectedUser = userName; // Set the selected user
+    this.selectedUser = userName;
   }
 }

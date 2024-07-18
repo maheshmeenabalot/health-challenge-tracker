@@ -1,40 +1,48 @@
-<div class="workout-list">
-    <div class="mb-4">
-      <input
-        type="text"
-        placeholder="Search by user name"
-        [(ngModel)]="searchQuery"
-        (input)="searchWorkouts()"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <select [(ngModel)]="filterType" (change)="filterWorkouts()" class="w-full p-2 border border-gray-300 rounded-md">
-        <option value="">All Workout Types</option>
-        <option value="Running">Running</option>
-        <option value="Swimming">Swimming</option>
-        <option value="Yoga">Yoga</option>
-        <!-- Add more workout types as needed -->
-      </select>
-    </div>
-    <ul>
-      <li
-        *ngFor="let workout of paginatedWorkouts"
-        class="p-2 border-b border-gray-300 cursor-pointer hover:bg-gray-100"
-        (click)="selectUser(workout.userName)"
-      >
-        {{ workout.userName }} - {{ workout.workoutType }} - {{ workout.workoutMinutes }} minutes
-      </li>
-    </ul>
-    <div class="mt-4">
-      <button
-        *ngFor="let page of [].constructor(totalPages); let i = index"
-        (click)="changePage(i + 1)"
-        [class.bg-blue-500]="currentPage === i + 1"
-        class="px-4 py-2 border border-gray-300"
-      >
-        {{ i + 1 }}
-      </button>
-    </div>
+<div class="workout-list max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
+  <div class="mb-4">
+    <input
+      type="text"
+      placeholder="Search by user name"
+      [(ngModel)]="searchQuery"
+      (input)="searchWorkouts()"
+      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
   </div>
-  
+  <div class="mb-4">
+    <select
+      [(ngModel)]="filterType"
+      (change)="filterWorkouts()"
+      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="">All Workout Types</option>
+      <option value="Running">Running</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Yoga">Yoga</option>
+      <!-- Add more workout types as needed -->
+    </select>
+  </div>
+  <ul class="divide-y divide-gray-200">
+    <li
+      *ngFor="let workout of paginatedWorkouts"
+      class="p-4 cursor-pointer hover:bg-gray-100 flex items-center justify-between"
+      (click)="selectUser(workout.userName)"
+    >
+      <div>
+        <span class="font-semibold">{{ workout.userName }}</span> - 
+        <span class="text-gray-600">{{ workout.workoutType }}</span>
+      </div>
+      <div class="text-gray-500">{{ workout.workoutMinutes }} minutes</div>
+    </li>
+  </ul>
+  <div class="mt-4 flex justify-center space-x-2">
+    <button
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      (click)="changePage(i + 1)"
+      [class.bg-blue-500]="currentPage === i + 1"
+      [class.text-white]="currentPage === i + 1"
+      class="px-4 py-2 border border-gray-300 rounded-md hover:bg-blue-500 hover:text-white transition"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>

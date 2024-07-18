@@ -1,17 +1,17 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-workout-list',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Add FormsModule here
+  imports: [CommonModule, FormsModule],
   templateUrl: './workout-list.component.html',
   styleUrls: ['./workout-list.component.scss']
 })
-export class WorkoutListComponent implements OnInit {
+export class WorkoutListComponent implements OnInit, OnChanges {
   @Input() workouts: { userName: string, workoutType: string, workoutMinutes: number }[] = [];
-  @Output() userSelected = new EventEmitter<string>(); // Add EventEmitter for user selection
+  @Output() userSelected = new EventEmitter<string>();
   filteredWorkouts: { userName: string, workoutType: string, workoutMinutes: number }[] = [];
   paginatedWorkouts: { userName: string, workoutType: string, workoutMinutes: number }[] = [];
   searchQuery: string = '';
@@ -21,6 +21,12 @@ export class WorkoutListComponent implements OnInit {
 
   ngOnInit() {
     this.applyFilterAndPagination();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['workouts']) {
+      this.applyFilterAndPagination();
+    }
   }
 
   searchWorkouts() {
@@ -61,6 +67,6 @@ export class WorkoutListComponent implements OnInit {
   }
 
   selectUser(userName: string) {
-    this.userSelected.emit(userName); // Emit selected user
+    this.userSelected.emit(userName);
   }
 }
