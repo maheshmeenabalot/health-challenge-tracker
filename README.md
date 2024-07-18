@@ -30,7 +30,7 @@
 
 ## Deployment
 
-The application is hosted on Netlify.
+The application is hosted on Netlify : https://cheak-workout-tracker.netlify.app/
 
 ## Unit Tests
 
